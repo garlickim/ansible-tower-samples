@@ -1,0 +1,18 @@
+---
+- name: This is version check shell
+  hosts: all
+  tasks:
+    - name: version check
+      shell: "/usr/bin/python3 --version"
+      register: result
+
+    - set_fact:
+        message: "{{ result.stderr_lines }}"
+      when: result.stderr != ""
+
+    - set_fact:
+        message: "{{ result.stdout_lines }}"
+      when: result.stdout != ""
+
+    - name: print version 
+      debug: msg="{{ message }}"
