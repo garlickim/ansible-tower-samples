@@ -1,6 +1,7 @@
 ---
 - name: This is version check shell
   hosts: all
+  gather_facts: yes
   tasks:
     - name: version check
       shell: "/usr/bin/python3 --version"
